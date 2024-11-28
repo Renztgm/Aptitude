@@ -23,16 +23,18 @@ public class MainActivity extends AppCompatActivity {
         // Set up ViewPager2 with an adapter
         viewPager.setAdapter(new FragmentAdapter(this));
 
+        viewPager.setUserInputEnabled(false);
+
         // Link BottomNavigationView with ViewPager2
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.tab1) {
-                viewPager.setCurrentItem(0);
+                viewPager.setCurrentItem(0, false);
                 return true;
             } else if (item.getItemId() == R.id.tab2) {
-                viewPager.setCurrentItem(1);
+                viewPager.setCurrentItem(1, true);
                 return true;
             } else if (item.getItemId() == R.id.tab3) {
-                viewPager.setCurrentItem(2);
+                viewPager.setCurrentItem(2, true);
                 return true;
             }
             return false;
