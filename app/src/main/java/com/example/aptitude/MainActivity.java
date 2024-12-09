@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         // Set up ViewPager2 with an adapter
         viewPager.setAdapter(new FragmentAdapter(this));
 
-        viewPager.setUserInputEnabled(false);
+        viewPager.setUserInputEnabled(false);// disabling swiping
 
         // Link BottomNavigationView with ViewPager2
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } else if (item.getItemId() == R.id.tab3) {
                 viewPager.setCurrentItem(2, true);
+                return true;
+            } else if (item.getItemId() == R.id.tab4) {
+                viewPager.setCurrentItem(3, true);
+                return true;
+            } else if (item.getItemId() == R.id.tab5) {
+                viewPager.setCurrentItem(4, true);
                 return true;
             }
             return false;
@@ -52,8 +58,16 @@ public class MainActivity extends AppCompatActivity {
                 } else if (position == 2) {
                     bottomNavigationView.setSelectedItemId(R.id.tab3);
                 }
+                 else if (position == 3) {
+                    bottomNavigationView.setSelectedItemId(R.id.tab4);
+                }
+                else if (position == 4) {
+                    bottomNavigationView.setSelectedItemId(R.id.tab5);
+                }
+
             }
         });
+
     }
 
     private static class FragmentAdapter extends FragmentStateAdapter {
@@ -71,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 return new Tab2Fragment();
             } else if (position == 2) {
                 return new Tab3Fragment();
+            } else if (position == 3) {
+                return new Tab4Fragment();
+            } else if (position == 4) {
+                return new Tab5Fragment();
             } else {
                 return new Tab1Fragment();
             }
@@ -78,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return 3; // Number of tabs
+            return 5; // Number of tabs
         }
     }
 }

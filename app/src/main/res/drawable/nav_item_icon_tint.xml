@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- When the item is selected (active), set the icon color to nav_buttons -->
+    <item android:color="@color/nav_buttons" android:state_checked="true"/>
+    <!-- When the item is not selected (inactive), set the icon color to a different color (e.g., black) -->
+    <item android:color="@color/black"/> <!-- You can replace with any other color -->
+</selector>

@@ -6,7 +6,6 @@ public class Place {
     private double latitude;
     private double longitude;
 
-    // Constructor
     public Place(String name, String address, double latitude, double longitude) {
         this.name = name;
         this.address = address;
@@ -14,7 +13,6 @@ public class Place {
         this.longitude = longitude;
     }
 
-    // Getters and setters
     public String getName() {
         return name;
     }
