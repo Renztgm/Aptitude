@@ -35,18 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Remove the status bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            WindowInsetsController insetsController = getWindow().getInsetsController();
-            if (insetsController != null) {
-                insetsController.hide(WindowInsets.Type.statusBars()); // Hides the status bar
-            }
-        } else {
-            // For devices below Android 11, use this method
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-
         // Remove the action bar (top navigation bar)
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide(); // Hide the action bar

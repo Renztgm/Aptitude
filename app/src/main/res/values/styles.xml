@@ -1,18 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CustomMaterialButton" parent="Widget.MaterialComponents.Button">
+
+    <!-- Boxes -->
+    <style name="NavigationBar" parent="Widget.MaterialComponents.Button">
+        <!-- Background color -->
+        <item name="android:backgroundTint">@color/nav</item>
+    </style>
+
+    <style name="CoursesInButton" parent="Widget.MaterialComponents.Button">
         <!-- Background color -->
         <item name="android:backgroundTint">@color/buttons2</item>
-
         <!-- Border color and width -->
         <item name="strokeColor">@color/stroke_buttons2</item>
         <item name="strokeWidth">3dp</item>
-
         <!-- Corner radius -->
         <item name="cornerRadius">30dp</item>
-
         <!-- Text color -->
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">@color/textCourse</item>
     </style>
 
+    <!--Looking For Spaces Button -->
+    <style name="LookingSpaces" parent="Widget.MaterialComponents.Button">
+        <!-- Background color -->
+        <item name="android:backgroundTint">@color/LookingForSpaces</item>
+        <!-- Border color and width -->
+        <item name="strokeColor">@color/LookingForSpacesStroke</item>
+        <item name="strokeWidth">2dp</item>
+        <!-- Corner radius -->
+        <item name="cornerRadius">12dp</item>
+        <!-- Text color and size -->
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">start</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <!-- Account -->
+    <style name="Account" parent="Widget.MaterialComponents.Button">
+        <!-- Background color -->
+        <item name="android:backgroundTint">@color/AccountBgButton</item>
+        <!-- Corner radius -->
+        <item name="cornerRadius">50dp</item>
+        <!-- Text color and size -->
+        <item name="android:textColor">@color/text</item>
+<!--        <item name="android:textSize">16sp</item>-->
+        <item name="android:gravity">start</item>
+        <item name="android:paddingRight">7dp</item>
+    </style>
+
+    <!-- Boxes -->
+    <style name="Boxes" parent="Widget.MaterialComponents.Button">
+        <!-- Background color -->
+        <item name="android:backgroundTint">@color/background</item>
+        <!-- Corner radius -->
+        <item name="cornerRadius">12dp</item>
+        <!-- Border color and width -->
+        <item name="strokeColor">@color/button_stroke</item>
+        <item name="strokeWidth">2dp</item>
+        <!-- Layout Weight, Margin and text-->
+        <item name="android:textColor">@color/text</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <!-- Courses Boxes -->
+    <style name="CoursesBoxes" parent="Widget.MaterialComponents.Button">
+        <!-- Background color -->
+        <item name="android:backgroundTint">@color/buttons</item>
+        <!-- Corner radius -->
+        <item name="cornerRadius">12dp</item>
+        <!-- Border color and width -->
+        <item name="strokeColor">@color/button_stroke</item>
+        <item name="strokeWidth">2dp</item>
+        <!-- Layout Weight, Margin and text-->
+        <item name="android:textColor">@color/text</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
 </resources>

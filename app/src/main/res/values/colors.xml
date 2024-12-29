@@ -2,16 +2,31 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="search_button">#edafb8</color>
+
+    <color name="LookingForSpaces">#edafb8</color>
+    <color name="LookingForSpacesStroke">#ffffff</color>
+
     <color name="background">#f7e1d7</color>
-    <color name="background2">#dedbd2</color>
-    <color name="nav">#dedbd2</color>
+    <color name="CourseBg">#dedbd2</color>
+
+    <color name="AccountBgButton">#b0c4b1</color>
+
+    <!-- Tab1 Courses Button-->
     <color name="buttons">#b0c4b1</color>
-    <color name="nav_buttons">#4a5759</color>
-    <color name="text">#FF000000</color>
-    <color name="textbox">#ffffff</color>
-    <color name="stroke_search_button">#ffffff</color>
-    <color name="button_stroke">#b0c4b1</color>
+    <color name="button_stroke">#4a5759</color>
+
+    <!--Inside of the Courses Button-->
     <color name="buttons2">#f7e1d7</color>
     <color name="stroke_buttons2">#edafb8</color>
+    <color name="textCourse">#edafb8</color>
+
+    <color name="stroke_search_button">#ffffff</color>
+
+    <color name="nav">#dedbd2</color>
+    <color name="nav_buttons">#edafb8</color>
+
+    <color name="text">#FF000000</color>
+    <color name="textbox">#ffffff</color>
+
+    <color name="eye_color">#FF000000</color>
 </resources>

@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/background2"
+    android:background="@color/CourseBg"
     android:padding="16dp">
 
     <LinearLayout
@@ -51,11 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:text="Notes"
-            android:backgroundTint="@color/buttons2"
-            app:cornerRadius="20dp"
-            app:strokeColor="@color/stroke_buttons2"
-            app:strokeWidth="2dp"
-            android:textColor="@color/text"
+            style="@style/CoursesInButton"
             />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_2"
@@ -65,11 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:text="Flash Card"
-            android:backgroundTint="@color/buttons2"
-            app:cornerRadius="20dp"
-            app:strokeColor="@color/stroke_buttons2"
-            app:strokeWidth="2dp"
-            android:textColor="@color/text"
+            style="@style/CoursesInButton"
             />
 
         <com.google.android.material.button.MaterialButton
@@ -80,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:text="Summarize"
-            style="@style/CustomMaterialButton"
+            style="@style/CoursesInButton"
             />
 
     </LinearLayout>
