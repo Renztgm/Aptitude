@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/background2"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/backbutton"/>
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/course_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_weight="1"
+            android:text="Course Title"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/course_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Course Description"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_1"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Notes"
+            android:backgroundTint="@color/buttons2"
+            app:cornerRadius="20dp"
+            app:strokeColor="@color/stroke_buttons2"
+            app:strokeWidth="2dp"
+            android:textColor="@color/text"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_2"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Flash Card"
+            android:backgroundTint="@color/buttons2"
+            app:cornerRadius="20dp"
+            app:strokeColor="@color/stroke_buttons2"
+            app:strokeWidth="2dp"
+            android:textColor="@color/text"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_3"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Summarize"
+            style="@style/CustomMaterialButton"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

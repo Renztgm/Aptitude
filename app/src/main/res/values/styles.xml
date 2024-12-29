@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomMaterialButton" parent="Widget.MaterialComponents.Button">
+        <!-- Background color -->
+        <item name="android:backgroundTint">@color/buttons2</item>
+
+        <!-- Border color and width -->
+        <item name="strokeColor">@color/stroke_buttons2</item>
+        <item name="strokeWidth">3dp</item>
+
+        <!-- Corner radius -->
+        <item name="cornerRadius">30dp</item>
+
+        <!-- Text color -->
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+</resources>

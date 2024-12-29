@@ -15,20 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aptitude"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".MapsActivity" />
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".CourseActivity" />
+        <activity android:name=".LoginActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapsActivity" />
-        <activity android:name=".AccountActivity" />
+        <activity android:name=".SignupActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA2gqI4dXDwEC68CQ-6fVTjRXFKfraTP6g" />
+
     </application>
 
 

@@ -109,7 +109,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- LinearLayout inside HorizontalScrollView to hold buttons horizontally -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -117,6 +116,7 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/course_button_1"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_marginEnd="8dp"
@@ -125,6 +125,7 @@
                     android:text="Course 1" />
 
                 <Button
+                    android:id="@+id/course_button_2"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_marginEnd="8dp"
@@ -132,22 +133,6 @@
                     android:textColor="@color/text"
                     android:text="Course 2" />
 
-                <!-- Add more buttons as needed -->
-                <Button
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/boxes"
-                    android:textColor="@color/text"
-                    android:text="Course 3" />
-
-                <Button
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/boxes"
-                    android:textColor="@color/text"
-                    android:text="Course 4" />
 
             </LinearLayout>
         </HorizontalScrollView>

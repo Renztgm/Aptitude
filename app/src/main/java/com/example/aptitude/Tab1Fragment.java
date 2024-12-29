@@ -24,8 +24,8 @@ public class Tab1Fragment extends Fragment {
 
         // Set up a click listener for the button
         openActivityButton.setOnClickListener(v -> {
-            // Create an intent to open the new activity
-            Intent intent = new Intent(getActivity(), MapsActivity  .class);
+            // Create an intent to open the MapsActivity
+            Intent intent = new Intent(getActivity(), MapsActivity.class);
             startActivity(intent);
         });
 
@@ -36,6 +36,25 @@ public class Tab1Fragment extends Fragment {
             startActivity(intent);
         });
 
+        // Handle click for Course 1
+        Button courseButton1 = rootView.findViewById(R.id.course_button_1);
+        courseButton1.setOnClickListener(v -> {
+            openCourseActivity("Course 1");
+        });
+
+        // Handle click for Course 2
+        Button courseButton2 = rootView.findViewById(R.id.course_button_2);
+        courseButton2.setOnClickListener(v -> {
+            openCourseActivity("Course 2");
+        });
+
         return rootView;
+    }
+
+    private void openCourseActivity(String courseId) {
+        // Create an intent to open the CourseActivity with the course ID
+        Intent intent = new Intent(getActivity(), CourseActivity.class);
+        intent.putExtra("course_id", courseId); // Pass the course ID to the new activity
+        startActivity(intent);
     }
 }

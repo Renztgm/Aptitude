@@ -8,16 +8,17 @@
         android:title="Tab 2"
         android:icon="@drawable/circle"/>
     <item
+        android:id="@+id/tabspace"
+        android:title=""
+        android:clickable="false"
+        android:enabled="false"/>
+    <item
         android:id="@+id/tab3"
         android:title="Tab3"
         android:icon="@drawable/circle"/>
     <item
         android:id="@+id/tab4"
         android:title="Tab4"
-        android:icon="@drawable/circle"/>
-    <item
-        android:id="@+id/tab5"
-        android:title="Tab5"
         android:icon="@drawable/circle"/>
 
 </menu>

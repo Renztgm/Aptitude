@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="search_button">#edafb8</color>
     <color name="background">#f7e1d7</color>
+    <color name="background2">#dedbd2</color>
     <color name="nav">#dedbd2</color>
     <color name="buttons">#b0c4b1</color>
     <color name="nav_buttons">#4a5759</color>
@@ -11,4 +12,6 @@
     <color name="textbox">#ffffff</color>
     <color name="stroke_search_button">#ffffff</color>
     <color name="button_stroke">#b0c4b1</color>
+    <color name="buttons2">#f7e1d7</color>
+    <color name="stroke_buttons2">#edafb8</color>
 </resources>
