@@ -77,4 +77,9 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">8dp</item>
     </style>
+
+    <style name="listviewboxes" parent="Theme.MaterialComponents">
+        <item name="strokeColor">@color/button_stroke</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
 </resources>

@@ -19,7 +19,7 @@
 
         <TextView
             android:layout_marginLeft="20dp"
-            android:id="@+id/course_title"
+            android:id="@+id/course_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -31,6 +31,13 @@
 
     <TextView
         android:id="@+id/course_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Course Description"
+        android:layout_marginBottom="0dp"/>
+    <TextView
+        android:id="@+id/courseId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
