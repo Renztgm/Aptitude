@@ -65,65 +65,65 @@ public class Tab1Fragment extends Fragment {
             startActivity(intent);
         });
 
-        rootView.findViewById(R.id.add_course_button).setOnClickListener(v -> showAddCourseDialog());
+//        rootView.findViewById(R.id.add_course_button).setOnClickListener(v -> showAddCourseDialog());
 
         return rootView;
     }
 
-    private void showAddCourseDialog() {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_add_course, null);
+//    private void showAddCourseDialog() {
+//        LayoutInflater inflater = getActivity().getLayoutInflater();
+//        View dialogView = inflater.inflate(R.layout.dialog_add_course, null);
+//
+//        EditText courseNameEditText = dialogView.findViewById(R.id.course_name);
+//        EditText courseDescriptionEditText = dialogView.findViewById(R.id.course_description);
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        builder.setView(dialogView);
+//
+//        builder.setPositiveButton("Save", (dialog, which) -> {
+//            String courseName = courseNameEditText.getText().toString().trim();
+//            String courseDescription = courseDescriptionEditText.getText().toString().trim();
+//
+//            if (!courseName.isEmpty() && !courseDescription.isEmpty()) {
+//                addCourseToFirestore(courseName, courseDescription);
+//
+//                // Notify MainActivity to refresh Tab1
+//                if (getActivity() instanceof MainActivity) {
+//                    ((MainActivity) getActivity()).refreshTab1();
+//                }
+//            } else {
+//                Toast.makeText(getContext(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+//        builder.create().show();
+//    }
 
-        EditText courseNameEditText = dialogView.findViewById(R.id.course_name);
-        EditText courseDescriptionEditText = dialogView.findViewById(R.id.course_description);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(dialogView);
-
-        builder.setPositiveButton("Save", (dialog, which) -> {
-            String courseName = courseNameEditText.getText().toString().trim();
-            String courseDescription = courseDescriptionEditText.getText().toString().trim();
-
-            if (!courseName.isEmpty() && !courseDescription.isEmpty()) {
-                addCourseToFirestore(courseName, courseDescription);
-
-                // Notify MainActivity to refresh Tab1
-                if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).refreshTab1();
-                }
-            } else {
-                Toast.makeText(getContext(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-        builder.create().show();
-    }
 
 
-
-    private void addCourseToFirestore(String courseName, String courseDescription) {
-        // Get the current user's UID
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        // Create a map for course data
-        Map<String, Object> courseData = new HashMap<>();
-        courseData.put("name", courseName);
-        courseData.put("description", courseDescription);
-
-        // Add course to Firestore under the user's UID
-        firestore.collection("users")
-                .document(userId)
-                .collection("courses")
-                .add(courseData)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getContext(), "Course added successfully!", Toast.LENGTH_SHORT).show();
-                    fetchCourses(); // Refresh the list of courses
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Failed to add course. Try again.", Toast.LENGTH_SHORT).show();
-                });
-    }
+//    private void addCourseToFirestore(String courseName, String courseDescription) {
+//        // Get the current user's UID
+//        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//
+//        // Create a map for course data
+//        Map<String, Object> courseData = new HashMap<>();
+//        courseData.put("name", courseName);
+//        courseData.put("description", courseDescription);
+//
+//        // Add course to Firestore under the user's UID
+//        firestore.collection("users")
+//                .document(userId)
+//                .collection("courses")
+//                .add(courseData)
+//                .addOnSuccessListener(documentReference -> {
+//                    Toast.makeText(getContext(), "Course added successfully!", Toast.LENGTH_SHORT).show();
+//                    fetchCourses(); // Refresh the list of courses
+//                })
+//                .addOnFailureListener(e -> {
+//                    Toast.makeText(getContext(), "Failed to add course. Try again.", Toast.LENGTH_SHORT).show();
+//                });
+//    }
 
 
 

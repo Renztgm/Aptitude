@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
+
     private Context context;
     private List<Course> courseList;
 
@@ -35,7 +36,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
         Course course = courseList.get(position);
+
+        // Set course name and description
         holder.courseNameTextView.setText(course.getName());
+        holder.courseDescriptionTextView.setText(course.getDescription()); // Binding description
 
         // Set up click listener to open the CourseActivity
         holder.itemView.setOnClickListener(v -> {
@@ -57,10 +61,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     // ViewHolder pattern to optimize performance
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         TextView courseNameTextView;
+        TextView courseDescriptionTextView;  // Added for description
 
         public CourseViewHolder(View itemView) {
             super(itemView);
             courseNameTextView = itemView.findViewById(R.id.course_name_textview);
+            courseDescriptionTextView = itemView.findViewById(R.id.course_description_textview);  // Initialized description TextView
         }
     }
 }

@@ -117,14 +117,14 @@
                     android:layout_marginTop="16dp"
                     />
 
-                <Button
-                    android:id="@+id/add_course_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="+"
-                    android:textColor="@color/text"
-                    style="@style/CoursesBoxes"/>
+<!--                <Button-->
+<!--                    android:id="@+id/add_course_button"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginEnd="8dp"-->
+<!--                    android:text="+"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    style="@style/CoursesBoxes"/>-->
 
 
             </LinearLayout>
