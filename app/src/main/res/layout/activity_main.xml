@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        style="@style/NavigationBar"
+        android:backgroundTint="@color/nav"
+
         >
         
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:elevation="0dp"
-            app:itemTextColor="@color/nav_buttons"
+            app:itemTextColor="@color/buttons"
             android:background="@android:color/transparent"
             android:layout_marginEnd="16dp"
             app:itemIconTint="@drawable/nav_item_icon_tint"
@@ -37,7 +38,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@color/buttons"
+        android:src="@drawable/add"
         app:layout_anchor="@id/bottomAppBar"
         android:backgroundTint="@color/nav"
         app:backgroundTint="@color/nav"

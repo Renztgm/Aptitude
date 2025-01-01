@@ -19,6 +19,9 @@
         <activity android:name=".MapsActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".CourseActivity" />
+        <activity android:name=".NotesActivity" />
+        <activity android:name=".FlashcardsActivity" />
+        <activity android:name=".SummarizeActivity" />
         <activity android:name=".LoginActivity"
             android:exported="true"
             android:launchMode="singleTask"
@@ -32,7 +35,12 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA2gqI4dXDwEC68CQ-6fVTjRXFKfraTP6g" />
+            android:value="AIzaSyA2gqI4dXDwEC68CQ-6fVTjRXFKfraTP6g"
+            />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"
+            />
 
     </application>
 

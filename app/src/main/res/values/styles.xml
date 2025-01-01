@@ -5,6 +5,8 @@
     <style name="NavigationBar" parent="Widget.MaterialComponents.Button">
         <!-- Background color -->
         <item name="android:backgroundTint">@color/nav</item>
+        <item name="strokeColor">@color/nav_buttons_stroke</item>
+        <item name="strokeWidth">3dp</item>
     </style>
 
     <style name="CoursesInButton" parent="Widget.MaterialComponents.Button">

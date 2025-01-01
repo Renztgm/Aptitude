@@ -15,17 +15,48 @@
             android:id="@+id/back_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/backbutton"/>
+            android:background="@drawable/backbutton"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
 
-        <TextView
-            android:layout_marginLeft="20dp"
-            android:id="@+id/course_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:text="Course Title"
-            android:layout_marginBottom="8dp"/>
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course Title"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/courseId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="8sp"
+                android:text="Course ID"
+                android:layout_marginBottom="0dp"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/delete"/>
+
+        <ImageButton
+            android:id="@+id/edit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit"/>
 
     </LinearLayout>
 
@@ -36,13 +67,6 @@
         android:textSize="16sp"
         android:text="Course Description"
         android:layout_marginBottom="0dp"/>
-    <TextView
-        android:id="@+id/courseId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="Course Description"
-        android:layout_marginBottom="16dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,14 +1,12 @@
 package com.example.aptitude;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,13 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Tab1Fragment extends Fragment {
 
@@ -33,10 +30,11 @@ public class Tab1Fragment extends Fragment {
     private CourseAdapter courseAdapter;
     private ArrayList<Course> courseList;
 
+    private String courseId; // To store the course ID if passed
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_tab1, container, false);
 
         // Initialize Firestore
@@ -51,8 +49,8 @@ public class Tab1Fragment extends Fragment {
         courseAdapter = new CourseAdapter(requireContext(), courseList);
         coursesRecyclerView.setAdapter(courseAdapter);
 
-        // Fetch courses for the user
-        fetchCourses();
+        // Fetch courses when fragment is created
+        fetchCourses(); // This will fetch all courses if no specific courseId is provided
 
         // Handle button actions
         rootView.findViewById(R.id.search_button).setOnClickListener(v -> {
@@ -65,68 +63,27 @@ public class Tab1Fragment extends Fragment {
             startActivity(intent);
         });
 
-//        rootView.findViewById(R.id.add_course_button).setOnClickListener(v -> showAddCourseDialog());
-
         return rootView;
     }
 
-//    private void showAddCourseDialog() {
-//        LayoutInflater inflater = getActivity().getLayoutInflater();
-//        View dialogView = inflater.inflate(R.layout.dialog_add_course, null);
-//
-//        EditText courseNameEditText = dialogView.findViewById(R.id.course_name);
-//        EditText courseDescriptionEditText = dialogView.findViewById(R.id.course_description);
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setView(dialogView);
-//
-//        builder.setPositiveButton("Save", (dialog, which) -> {
-//            String courseName = courseNameEditText.getText().toString().trim();
-//            String courseDescription = courseDescriptionEditText.getText().toString().trim();
-//
-//            if (!courseName.isEmpty() && !courseDescription.isEmpty()) {
-//                addCourseToFirestore(courseName, courseDescription);
-//
-//                // Notify MainActivity to refresh Tab1
-//                if (getActivity() instanceof MainActivity) {
-//                    ((MainActivity) getActivity()).refreshTab1();
-//                }
-//            } else {
-//                Toast.makeText(getContext(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-//        builder.create().show();
-//    }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        // Initialize Firestore and fetch courseId if available
+        firestore = FirebaseFirestore.getInstance();
+        courseId = getArguments() != null ? getArguments().getString("courseId") : null;
 
+        if (courseId != null) {
+            // Fetch a specific course by courseId if it's passed
+            fetchCourseById(courseId);
+        } else {
+            // Fetch all courses if courseId is not available
+            fetchCourses();
+        }
+    }
 
-//    private void addCourseToFirestore(String courseName, String courseDescription) {
-//        // Get the current user's UID
-//        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//
-//        // Create a map for course data
-//        Map<String, Object> courseData = new HashMap<>();
-//        courseData.put("name", courseName);
-//        courseData.put("description", courseDescription);
-//
-//        // Add course to Firestore under the user's UID
-//        firestore.collection("users")
-//                .document(userId)
-//                .collection("courses")
-//                .add(courseData)
-//                .addOnSuccessListener(documentReference -> {
-//                    Toast.makeText(getContext(), "Course added successfully!", Toast.LENGTH_SHORT).show();
-//                    fetchCourses(); // Refresh the list of courses
-//                })
-//                .addOnFailureListener(e -> {
-//                    Toast.makeText(getContext(), "Failed to add course. Try again.", Toast.LENGTH_SHORT).show();
-//                });
-//    }
-
-
-
+    // Fetches the course list from Firestore (fetching all courses)
     public void fetchCourses() {
         Log.d("FetchCourses", "fetchCourses called.");
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -134,24 +91,75 @@ public class Tab1Fragment extends Fragment {
         firestore.collection("users")
                 .document(userId)
                 .collection("courses")
-                .get()
+                .get() // Get all courses
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         QuerySnapshot querySnapshot = task.getResult();
-                        courseList.clear();
-                        for (QueryDocumentSnapshot document : querySnapshot) {
-                            String name = document.getString("name");
-                            String description = document.getString("description");
-                            courseList.add(new Course(name, description));
+                        courseList.clear(); // Clear existing data
+                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                            for (QueryDocumentSnapshot document : querySnapshot) {
+                                String courseId = document.getId();
+                                String courseName = document.getString("name");
+                                String courseDescription = document.getString("description");
+
+                                // Add course to list
+                                courseList.add(new Course(courseId, courseName, courseDescription));
+                            }
+                            courseAdapter.notifyDataSetChanged(); // Notify adapter to update the RecyclerView
+                            Log.d("FetchCourses", "Courses fetched and adapter updated.");
+                        } else {
+                            Log.d("FetchCourses", "No courses found.");
+                            Toast.makeText(getContext(), "No courses available.", Toast.LENGTH_SHORT).show();
                         }
-                        courseAdapter.notifyDataSetChanged();
-                        Log.d("FetchCourses", "Courses fetched and adapter updated.");
                     } else {
+                        Log.e("FetchCourses", "Error fetching courses: ", task.getException());
                         Toast.makeText(getContext(), "Failed to load courses.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+    // Fetch a specific course by courseId from Firestore
+    public void fetchCourseById(String courseId) {
+        Log.d("FetchCourse", "fetchCourseById called for courseId: " + courseId);
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        firestore.collection("users")
+                .document(userId)
+                .collection("courses")
+                .document(courseId) // Fetch a single course document by courseId
+                .get() // Using get() to fetch a single document
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String courseName = document.getString("name");
+                            String courseDescription = document.getString("description");
 
+                            // Handle the fetched course details (e.g., populate UI or process data)
+                            Log.d("FetchCourse", "Course fetched: " + courseName + " - " + courseDescription);
+                        } else {
+                            Log.d("FetchCourse", "Course not found.");
+                            Toast.makeText(getContext(), "Course not found.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("FetchCourse", "Error fetching course: ", task.getException());
+                        Toast.makeText(getContext(), "Failed to load course.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    // Method to refresh course data (called from another activity/fragment if needed)
+    public void refreshCourseData() {
+        if (courseId != null) {
+            fetchCourseById(courseId); // Fetch specific course if courseId is available
+        } else {
+            fetchCourses(); // Fetch all courses if courseId is not available
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Refresh the course data every time the fragment is visible again
+        refreshCourseData();
+    }
 }
