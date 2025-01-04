@@ -1,5 +1,6 @@
 package com.example.aptitude;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
+
+    private static final String READ_EXTERNAL_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE;
 
     private Context context;
     private List<Course> courseList;
@@ -69,4 +72,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             courseDescriptionTextView = itemView.findViewById(R.id.course_description_textview);  // Initialized description TextView
         }
     }
+
+
 }

@@ -1,79 +1,99 @@
 package com.example.aptitude;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.BufferedReader;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import okhttp3.*;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class SummarizeActivity extends AppCompatActivity {
 
-    private static final int PICK_FILE_REQUEST_CODE = 1;
-    private Button selectFileBtn;
-    private TextView summaryText;
+    private EditText inputEditText;
+    private TextView outputTextView;
+    private Button summarizeButton;
+
+    private static final String API_KEY = "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";
+    private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateText?key=" + API_KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summarize);
 
-        selectFileBtn = findViewById(R.id.selectFileBtn);
-        summaryText = findViewById(R.id.summaryText);
+        inputEditText = findViewById(R.id.inputEditText);
+        outputTextView = findViewById(R.id.outputTextView);
+        summarizeButton = findViewById(R.id.summarizeButton);
 
-        selectFileBtn.setOnClickListener(view -> {
-            // Open file picker to select a file
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*");  // Accept any type of file
-            startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
+        summarizeButton.setOnClickListener(view -> {
+            String inputText = inputEditText.getText().toString();
+            if (!inputText.isEmpty()) {
+                summarizeText(inputText);
+            } else {
+                Toast.makeText(this, "Please enter text to summarize", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    private void summarizeText(String inputText) {
+        OkHttpClient client = new OkHttpClient();
 
-        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            Uri fileUri = data.getData();
-            if (fileUri != null) {
-                // Read the file and show summary
+        JsonObject requestBodyJson = new JsonObject();
+        requestBodyJson.addProperty("prompt", inputText);
+
+        RequestBody body = RequestBody.create(
+                requestBodyJson.toString(), MediaType.parse("application/json; charset=utf-8")
+        );
+
+        Request request = new Request.Builder()
+                .url(API_URL)
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() ->
+                        Toast.makeText(SummarizeActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                );
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.body() == null) {
+                    runOnUiThread(() -> Toast.makeText(SummarizeActivity.this, "Empty response", Toast.LENGTH_SHORT).show());
+                    return;
+                }
+
+                String responseBody = response.body().string();
                 try {
-                    String fileContent = readFileContent(fileUri);
-                    String summarizedContent = summarizeText(fileContent);
-                    summaryText.setText(summarizedContent);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "Error reading the file", Toast.LENGTH_SHORT).show();
+                    JsonObject jsonResponse = JsonParser.parseString(responseBody).getAsJsonObject();
+
+                    if (jsonResponse.has("candidates")) {
+                        JsonArray candidates = jsonResponse.getAsJsonArray("candidates");
+                        if (candidates.size() > 0) {
+                            // The content is inside 'content.parts[0].text' in Gemini API responses
+                            JsonObject contentObject = candidates.get(0).getAsJsonObject();
+                            JsonObject content = contentObject.getAsJsonObject("content");
+                            JsonArray parts = content.getAsJsonArray("parts");
+                            String summary = parts.get(0).getAsJsonObject().get("text").getAsString();
+
+                            runOnUiThread(() -> outputTextView.setText(summary));
+                        } else {
+                            runOnUiThread(() -> Toast.makeText(SummarizeActivity.this, "No summary received.", Toast.LENGTH_SHORT).show());
+                        }
+                    } else {
+                        runOnUiThread(() -> Toast.makeText(SummarizeActivity.this, "Invalid response format.", Toast.LENGTH_SHORT).show());
+                    }
+                } catch (Exception e) {
+                    runOnUiThread(() -> Toast.makeText(SummarizeActivity.this, "Parsing error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                 }
             }
-        }
-    }
-
-    // Read the content of the file
-    private String readFileContent(Uri fileUri) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(fileUri)));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line).append("\n");
-        }
-        reader.close();
-        return stringBuilder.toString();
-    }
-
-    // Summarize the file content (simple truncation or summarization logic)
-    private String summarizeText(String text) {
-        if (text == null || text.isEmpty()) {
-            return "No content available.";
-        }
-        // Simple summarization: truncate to the first 200 characters
-        return text.length() > 200 ? text.substring(0, 200) + "..." : text;
+        });
     }
 }

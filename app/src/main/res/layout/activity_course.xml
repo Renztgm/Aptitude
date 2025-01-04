@@ -13,8 +13,8 @@
 
         <ImageButton
             android:id="@+id/back_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/icon_size_std"
+            android:layout_height="@dimen/icon_size_std"
             android:background="@drawable/backbutton"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"/>
@@ -35,6 +35,7 @@
                 android:id="@+id/courseId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/nav"
                 android:textSize="8sp"
                 android:text="Course ID"
                 android:layout_marginBottom="0dp"/>
@@ -42,8 +43,8 @@
 
         <ImageButton
             android:id="@+id/delete"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/icon_size_std"
+            android:layout_height="@dimen/icon_size_std"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -51,8 +52,8 @@
 
         <ImageButton
             android:id="@+id/edit"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/icon_size_std"
+            android:layout_height="@dimen/icon_size_std"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -64,7 +65,9 @@
         android:id="@+id/course_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="10sp"
         android:text="Course Description"
         android:layout_marginBottom="0dp"/>
 

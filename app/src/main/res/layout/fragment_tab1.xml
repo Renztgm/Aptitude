@@ -83,11 +83,21 @@
                 android:text="3" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/showCalendarButton"
                 style="@style/Boxes"
                 android:layout_width="0dp"
+                android:padding="16dp"
+                android:drawableTop="@drawable/calendar"
                 android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="4" />
+                />
+            <TextView
+                android:id="@+id/selectedDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="16dp"/>
 
 
         </LinearLayout>

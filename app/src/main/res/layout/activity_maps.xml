@@ -10,8 +10,8 @@
 
         <ImageButton
             android:id="@+id/back_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/icon_size_std"
+            android:layout_height="@dimen/icon_size_std"
             android:background="@drawable/backbutton"/>
 
     </LinearLayout>

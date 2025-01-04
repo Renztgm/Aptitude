@@ -14,6 +14,11 @@ playServicesLocation = "21.3.0"
 places = "4.1.0"
 firebaseAuth = "23.1.0"
 firebaseFirestore = "25.1.1"
+firebaseCrashlytics = "19.3.0"
+googleFirebaseCrashlytics = "3.0.2"
+common = "18.11.0"
+kotlin = "2.1.0"
+coreKtx = "1.15.0"
 
 [libraries]
 espresso-core-v351 = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
@@ -30,7 +35,12 @@ play-services-location = { group = "com.google.android.gms", name = "play-servic
 places = { group = "com.google.android.libraries.places", name = "places", version.ref = "places" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
+common = { group = "com.google.mlkit", name = "common", version.ref = "common" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+google-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "googleFirebaseCrashlytics" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 

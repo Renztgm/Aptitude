@@ -1,13 +1,19 @@
 package com.example.aptitude;
 
-import android.content.Context;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -19,10 +25,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import android.widget.EditText;
 import android.app.AlertDialog;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int STORAGE_PERMISSION_CODE = 1;
     private ViewPager2 viewPager;
     private BottomNavigationView bottomNavigationView;
     private FirebaseFirestore firestore;
@@ -31,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Request storage permissions
+        requestStoragePermission();
 
         // Initialize Firestore
         firestore = FirebaseFirestore.getInstance();
@@ -120,37 +131,48 @@ public class MainActivity extends AppCompatActivity {
             builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
             builder.create().show();
         });
-
     }
 
-    // This method will be used to show the add course dialog when the FAB is clicked
-    private void showAddCourseDialog() {
-        // Use getLayoutInflater() instead of requireContext() for inflating the dialog
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_course, null);
+    private void requestStoragePermission() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            // For Android 13 and above, request specific media permissions
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO,
+                    Manifest.permission.READ_MEDIA_AUDIO
+            }, STORAGE_PERMISSION_CODE);
+        } else {
+            // For Android 12 and below, request broader storage permissions
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, STORAGE_PERMISSION_CODE);
+        }
+    }
 
-        // Get the EditText fields
-        EditText courseNameEditText = dialogView.findViewById(R.id.course_name);
-        EditText courseDescriptionEditText = dialogView.findViewById(R.id.course_description);
+    // Handling the permission result
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
-        // Set up the dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(dialogView);
-
-        // Handle the "Save" button click
-        builder.setPositiveButton("Save", (dialog, which) -> {
-            String courseName = courseNameEditText.getText().toString();
-            String courseDescription = courseDescriptionEditText.getText().toString();
-
-            // Save the course to Firebase
-            addCourseToFirestore(courseName, courseDescription);
-        });
-
-        // Handle the "Cancel" button click
-        builder.setNegativeButton("Cancel", (dialog, which) -> {
-            dialog.dismiss();
-        });
-
-        builder.create().show();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (Environment.isExternalStorageManager()) {
+                Toast.makeText(this, "Storage permissions granted!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Storage permissions denied!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void addCourseToFirestore(String courseName, String courseDescription) {
@@ -172,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Course added successfully! Course ID: " + generatedCourseId, Toast.LENGTH_SHORT).show();
                     // Optionally: Store or display the generated course ID for future use
                     fetchCourses();
-                    refreshTab1();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(MainActivity.this, "Failed to add course. Try again.", Toast.LENGTH_SHORT).show();
@@ -225,16 +246,4 @@ public class MainActivity extends AppCompatActivity {
             return 4; // Corrected to 4 for the number of tabs
         }
     }
-    public void refreshTab1() {
-        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-            if (fragment instanceof Tab1Fragment) {
-                ((Tab1Fragment) fragment).fetchCourses(); // Trigger list refresh
-                Log.d("RefreshTab1", "Tab1Fragment refreshed successfully.");
-                return;
-            }
-        }
-        Log.d("RefreshTab1", "Tab1Fragment not found.");
-    }
-
-
 }
