@@ -1,14 +1,10 @@
 package com.example.aptitude;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.view.WindowInsets;
-import android.view.WindowInsetsController;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText emailLogin, passwordLogin;
     Button loginButton;
-    TextView signUpRedirectText;
+    TextView signUpRedirectText, forgotPasswordText;
     ImageButton togglePasswordButton;
 
     // Firebase Authentication instance
@@ -37,13 +33,14 @@ public class LoginActivity extends AppCompatActivity {
 
         // Remove the action bar (top navigation bar)
         if (getSupportActionBar() != null) {
-            getSupportActionBar().hide(); // Hide the action bar
+            getSupportActionBar().hide();
         }
 
         emailLogin = findViewById(R.id.emailLogin);
         passwordLogin = findViewById(R.id.passwordLogin);
         loginButton = findViewById(R.id.loginButton);
         signUpRedirectText = findViewById(R.id.signUpRedirectText);
+        forgotPasswordText = findViewById(R.id.forgotPasswordText);
         togglePasswordButton = findViewById(R.id.togglePasswordButton);
 
         // Initialize FirebaseAuth
@@ -52,10 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         // Check if the user is already logged in
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            // If the user is already logged in, redirect to MainActivity
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
-            finish();  // Close the LoginActivity so the user cannot go back to it
+            finish();
         }
 
         // Handle Login Button Click
@@ -68,15 +64,13 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            // Firebase Authentication Sign-In
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            // Redirect to MainActivity
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
-                            finish(); // Close LoginActivity
+                            finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "Login Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -89,19 +83,34 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Forgot Password Functionality
+        forgotPasswordText.setOnClickListener(v -> {
+            String email = emailLogin.getText().toString().trim();
+
+            if (email.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Please enter your registered email", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            mAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Password reset email sent", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        });
+
         // Toggle Password Visibility
         togglePasswordButton.setOnClickListener(v -> {
             if (passwordLogin.getTransformationMethod() instanceof PasswordTransformationMethod) {
-                // Show password
                 passwordLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                togglePasswordButton.setImageResource(R.drawable.ic_eye_open); // Change icon to 'open eye'
+                togglePasswordButton.setImageResource(R.drawable.ic_eye_open);
             } else {
-                // Hide password
                 passwordLogin.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                togglePasswordButton.setImageResource(R.drawable.ic_eye); // Change icon to 'closed eye'
+                togglePasswordButton.setImageResource(R.drawable.ic_eye);
             }
-
-            // Move the cursor to the end of the text after transformation
             passwordLogin.setSelection(passwordLogin.length());
         });
     }

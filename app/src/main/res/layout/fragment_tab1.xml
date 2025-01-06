@@ -2,6 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:layout_marginBottom="50dp"
     android:padding="16dp">
 
     <!-- Horizontal container for App Name and Account Button -->
@@ -9,6 +10,8 @@
         android:id="@+id/AptitudeandAccount"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:orientation="horizontal">
 
         <!-- App Name on the Left -->
@@ -17,12 +20,11 @@
             android:id="@+id/app_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-medium"
+            android:layout_weight="1"
             android:text="@string/app_name"
-            android:textColor="@color/text"
-            android:textSize="20sp" />
+            android:textColor="@color/aptitudetext"
+            android:textSize="24sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/account"
@@ -51,7 +53,7 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_search"
             android:text="Looking for spaces ?"
-            android:textColor="@color/textbox" />
+            android:textColor="@color/text" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,15 +103,31 @@
 
 
         </LinearLayout>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
         <!-- My Courses -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:paddingTop="16dp"
+            android:layout_weight="1"
+            android:textColor="@color/aptitudetext"
             android:text="My Courses"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/add_course_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:text="+"
+            android:layout_gravity="center"
+            android:textColor="@color/text"
+            style="@style/addbutton"/>
+</LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -128,16 +146,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
                     />
-
-<!--                <Button-->
-<!--                    android:id="@+id/add_course_button"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:text="+"-->
-<!--                    android:textColor="@color/text"-->
-<!--                    style="@style/CoursesBoxes"/>-->
-
 
             </LinearLayout>
         </ScrollView>

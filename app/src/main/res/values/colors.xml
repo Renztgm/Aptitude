@@ -9,7 +9,8 @@
     <color name="background">#f7e1d7</color>
     <color name="CourseBg">#dedbd2</color>
 
-    <color name="AccountBgButton">#b0c4b1</color>
+    <color name="AccountBgButton">#fd3866</color>
+    <color name="AccountStrokeButton">#fd3866</color>
 
     <!-- Tab1 Courses Button-->
     <color name="buttons">#b0c4b1</color>
@@ -28,6 +29,9 @@
 
     <color name="text">#FF000000</color>
     <color name="textbox">#ffffff</color>
+
+    <color name="aptitudetext">#fd3866</color>
+    <color name="accountstroke">#fd3866</color>
 
     <color name="eye_color">#FF000000</color>
 </resources>

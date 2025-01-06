@@ -43,23 +43,13 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            WindowInsetsController insetsController = getWindow().getInsetsController();
-            if (insetsController != null) {
-                insetsController.hide(WindowInsets.Type.statusBars());
-            }
-        } else {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
-        mStorage = FirebaseStorage.getInstance();
+        mStorage = FirebaseStorage.getInstance("gs://aptitude-1523b");
 
         usernameTextView = findViewById(R.id.username);
         emailTextView = findViewById(R.id.email);

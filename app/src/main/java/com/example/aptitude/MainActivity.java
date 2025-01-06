@@ -20,6 +20,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import android.widget.EditText;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Firestore
         firestore = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference tasksCollection = db.collection("tasks");
+
 
         // Remove the action bar (top navigation bar)
         if (getSupportActionBar() != null) {
@@ -106,30 +110,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Set up FAB to open the add course dialog
+//        fab.setOnClickListener(view -> {
+//            // Show the dialog for adding a course
+//            LayoutInflater inflater = getLayoutInflater();
+//            View dialogView = inflater.inflate(R.layout.dialog_add_course, null);
+//
+//            EditText courseNameEditText = dialogView.findViewById(R.id.course_name);
+//            EditText courseDescriptionEditText = dialogView.findViewById(R.id.course_description);
+//
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setView(dialogView);
+//
+//            builder.setPositiveButton("Save", (dialog, which) -> {
+//                String courseName = courseNameEditText.getText().toString().trim();
+//                String courseDescription = courseDescriptionEditText.getText().toString().trim();
+//
+//                if (!courseName.isEmpty() && !courseDescription.isEmpty()) {
+//                    addCourseToFirestore(courseName, courseDescription);
+//                } else {
+//                    Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+//            builder.create().show();
+//        });
+
         fab.setOnClickListener(view -> {
-            // Show the dialog for adding a course
-            LayoutInflater inflater = getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.dialog_add_course, null);
-
-            EditText courseNameEditText = dialogView.findViewById(R.id.course_name);
-            EditText courseDescriptionEditText = dialogView.findViewById(R.id.course_description);
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setView(dialogView);
-
-            builder.setPositiveButton("Save", (dialog, which) -> {
-                String courseName = courseNameEditText.getText().toString().trim();
-                String courseDescription = courseDescriptionEditText.getText().toString().trim();
-
-                if (!courseName.isEmpty() && !courseDescription.isEmpty()) {
-                    addCourseToFirestore(courseName, courseDescription);
-                } else {
-                    Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-            builder.create().show();
+            // Create an Intent to navigate to the Gemini AI activity
+            Intent intent = new Intent(MainActivity.this, GeminiAI.class); // Replace with your Gemini AI activity class name
+            startActivity(intent);
         });
     }
 

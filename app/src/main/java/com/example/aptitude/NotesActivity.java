@@ -2,6 +2,7 @@ package com.example.aptitude;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class NotesActivity extends AppCompatActivity {
 
     private EditText notesEditText;
-    private MaterialButton saveNotesButton;
+    private Button saveNotesButton;
     private FirebaseFirestore firestore;
     private String courseId;
 
@@ -23,9 +24,10 @@ public class NotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        // Remove the action bar (top navigation bar)
+        findViewById(R.id.back_button).setOnClickListener(v -> onBackPressed()); // Go back to the previous activity
+
         if (getSupportActionBar() != null) {
-            getSupportActionBar().hide(); // Hide the action bar
+            getSupportActionBar().hide();
         }
 
         // Initialize Firebase Firestore

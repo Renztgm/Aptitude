@@ -5,14 +5,30 @@
     android:orientation="vertical"
     android:background="@color/buttons"
     android:padding="16dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/icon_size_std"
+            android:layout_height="@dimen/icon_size_std"
+            android:background="@drawable/backbutton"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/save_notes_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="Save Notes"
-        android:layout_marginTop="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/save_notes_button"
+            android:layout_width="@dimen/icon_size_std"
+            android:layout_height="@dimen/icon_size_std"
+            android:background="@drawable/save"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/notes_edit_text"

@@ -3,15 +3,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="LookingForSpaces">#857f74</color>
-    <color name="LookingForSpacesStroke">#cadf9e</color>
+    <color name="LookingForSpaces">#3c4756</color>
+    <color name="LookingForSpacesStroke">#ff8433</color>
 
-    <color name="background">#313628</color>
-    <color name="CourseBg">#313628</color>
+    <color name="AccountBgButton">#ff8433</color>
+    <color name="AccountStrokeButton">#fd3866</color>
+
+    <color name="background">#4b6581</color>
+    <color name="CourseBg">#4b6581</color>
 
     <!-- Tab1 Courses Button-->
-    <color name="buttons">#595358</color>
-    <color name="button_stroke">#cadf9e</color>
+    <color name="buttons">#3c4756</color>
+    <color name="button_stroke">#ff8433</color>
 
     <!--Inside of the Courses Button-->
     <color name="buttons2">#857f74</color>
@@ -23,9 +26,12 @@
     <color name="nav">#857f74</color>
     <color name="nav_buttons">#cadf9e</color>
 
-    <color name="text">#cadf9e</color>
-    <color name="textbox">#cadf9e</color>
+    <color name="text">#FFFFFFFF</color>
+    <color name="textbox">#3c4756</color>
 
+    <color name="aptitudetext">#ff8433</color>
+    <color name="accountstroke">#fd3866</color>
 
     <color name="eye_color">#FFFFFFFF</color>
+
 </resources>

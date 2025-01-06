@@ -7,13 +7,9 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
-
-
-
-
-
 
     <application
         android:allowBackup="true"
@@ -32,6 +28,7 @@
         <activity android:name=".NotesActivity" />
         <activity android:name=".FlashcardsActivity" />
         <activity android:name=".SummarizeActivity" />
+        <activity android:name=".GeminiAI" />
         <activity android:name=".LoginActivity"
             android:exported="true"
             android:launchMode="singleTask"
@@ -51,6 +48,9 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"
             />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 

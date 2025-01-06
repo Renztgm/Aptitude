@@ -14,7 +14,7 @@ android {
         minSdk = 33
         targetSdk = 33
         versionCode = 1
-        versionName = "4.2.4"
+        versionName = "5.0beta"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -91,4 +91,5 @@ dependencies {
     implementation("com.karumi:dexter:6.2.3")
 
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
+    implementation("org.json:json:20231013")
 }

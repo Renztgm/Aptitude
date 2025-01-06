@@ -23,6 +23,9 @@ public class CourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
+
+        findViewById(R.id.back_button).setOnClickListener(v -> onBackPressed()); // Go back to the previous activity
+
         // Remove the action bar (top navigation bar)
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide(); // Hide the action bar
@@ -37,7 +40,6 @@ public class CourseActivity extends AppCompatActivity {
         summarizeButton = findViewById(R.id.button_3);
 
         // Setting up back button functionality
-        findViewById(R.id.back_button).setOnClickListener(v -> onBackPressed()); // Go back to the previous activity
 
         // Set up click listeners for each button
         notesButton.setOnClickListener(v -> openNotes());
