@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.tab2) {
                 viewPager.setCurrentItem(1, true);
                 return true;
-            } else if (item.getItemId() == R.id.tab3) {
-                viewPager.setCurrentItem(2, true);
-                return true;
-            } else if (item.getItemId() == R.id.tab4) {
-                viewPager.setCurrentItem(3, true);
-                return true;
+//            } else if (item.getItemId() == R.id.tab3) {
+//                viewPager.setCurrentItem(2, true);
+//                return true;
+//            } else if (item.getItemId() == R.id.tab4) {
+//                viewPager.setCurrentItem(3, true);
+//                return true;
             } else {
                 return false;
             }
@@ -96,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         bottomNavigationView.setSelectedItemId(R.id.tab2);
                         break;
-                    case 2:
-                        bottomNavigationView.setSelectedItemId(R.id.tab3);
-                        break;
-                    case 3:
-                        bottomNavigationView.setSelectedItemId(R.id.tab4);
-                        break;
+//                    case 2:
+//                        bottomNavigationView.setSelectedItemId(R.id.tab3);
+//                        break;
+//                    case 3:
+//                        bottomNavigationView.setSelectedItemId(R.id.tab4);
+//                        break;
                     default:
                         bottomNavigationView.setSelectedItemId(R.id.tab1);
                         break;

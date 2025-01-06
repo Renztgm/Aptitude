@@ -58,7 +58,7 @@ public class Tab2Fragment extends Fragment {
         TextView dateTextView = view.findViewById(R.id.dateTextView);  // Make sure to use the correct ID
 
 // Set the current date with the suffix
-        dateTextView.setText(getFormattedDate());
+        //dateTextView.setText(getFormattedDate());
 
 
         return view;
@@ -91,7 +91,7 @@ public class Tab2Fragment extends Fragment {
 
         if (!taskDescription.isEmpty()) {
             // Get the formatted date with the correct suffix
-            String currentDate = getFormattedDate();
+//            String currentDate = getFormattedDate();
 
             // Create the new task with description and formatted date
             Task newTask = new Task(taskDescription);
@@ -116,24 +116,24 @@ public class Tab2Fragment extends Fragment {
         }
     }
 
-    // Method to add the correct suffix to the date
-    private String getFormattedDate() {
-        int dayOfMonth = new Date().getDate();
-        String suffix = "th"; // Default suffix
-
-        if (dayOfMonth % 10 == 1 && dayOfMonth != 11) {
-            suffix = "st";
-        } else if (dayOfMonth % 10 == 2 && dayOfMonth != 12) {
-            suffix = "nd";
-        } else if (dayOfMonth % 10 == 3 && dayOfMonth != 13) {
-            suffix = "rd";
-        }
-
-        return dayOfMonth + suffix;
-    }
-
-    // In your addTask method, replace the current date code with:
-    String currentDate = getFormattedDate();
+//    // Method to add the correct suffix to the date
+//    private String getFormattedDate() {
+//        int dayOfMonth = new Date().getDate();
+//        String suffix = "th"; // Default suffix
+//
+//        if (dayOfMonth % 10 == 1 && dayOfMonth != 11) {
+//            suffix = "st";
+//        } else if (dayOfMonth % 10 == 2 && dayOfMonth != 12) {
+//            suffix = "nd";
+//        } else if (dayOfMonth % 10 == 3 && dayOfMonth != 13) {
+//            suffix = "rd";
+//        }
+//
+//        return dayOfMonth + suffix;
+//    }
+//
+//    // In your addTask method, replace the current date code with:
+//    String currentDate = getFormattedDate();
 
 
 

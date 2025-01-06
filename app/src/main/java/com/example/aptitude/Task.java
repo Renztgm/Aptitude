@@ -1,6 +1,9 @@
 package com.example.aptitude;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Task {
@@ -45,7 +48,6 @@ public class Task {
     }
 
 
-
     public String getUserId() {
         return userId;
     }
@@ -61,6 +63,25 @@ public class Task {
     public void setCompleted(boolean completed) {
         isCompleted = completed;
     }
+    private String getcurrentDate() {
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("d", Locale.getDefault());
+        int dayOfMonth = Integer.parseInt(sdf.format(today));
+
+        String suffix = "th";
+        if (dayOfMonth % 10 == 1 && dayOfMonth != 11) {
+            suffix = "st";
+        } else if (dayOfMonth % 10 == 2 && dayOfMonth != 12) {
+            suffix = "nd";
+        } else if (dayOfMonth % 10 == 3 && dayOfMonth != 13) {
+            suffix = "rd";
+        }
+
+        // Return formatted date with suffix
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
+        return dayOfMonth + suffix + " " + dateFormat.format(today);
+    }
+
 
     // Getter for date
     public String getDate() {

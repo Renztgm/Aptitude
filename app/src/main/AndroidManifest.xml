@@ -15,9 +15,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/aptitude"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/aptitude_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aptitude"
         tools:targetApi="31">
@@ -29,6 +29,7 @@
         <activity android:name=".FlashcardsActivity" />
         <activity android:name=".SummarizeActivity" />
         <activity android:name=".GeminiAI" />
+        <activity android:name=".CreateFlashcardActivity" android:exported="true"/>
         <activity android:name=".LoginActivity"
             android:exported="true"
             android:launchMode="singleTask"
