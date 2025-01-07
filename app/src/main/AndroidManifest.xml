@@ -21,16 +21,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aptitude"
         tools:targetApi="31">
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".MapsActivity" />
-        <activity android:name=".AccountActivity" />
-        <activity android:name=".CourseActivity" />
-        <activity android:name=".NotesActivity" />
-        <activity android:name=".FlashcardsActivity" />
-        <activity android:name=".SummarizeActivity" />
-        <activity android:name=".GeminiAI" />
-        <activity android:name=".CreateFlashcardActivity" android:exported="true"/>
+
+        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MapsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".AccountActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".NotesActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".FlashcardsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SummarizeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SummarizerAI" android:screenOrientation="portrait"/>
+        <activity android:name=".GeminiAI" android:screenOrientation="portrait"/>
+        <activity android:name=".CreateFlashcardActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".SplashActivity" android:screenOrientation="portrait"/>
         <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true">
@@ -39,7 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".SignupActivity" android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -30,6 +30,13 @@ public class FlashcardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcards);
 
+        findViewById(R.id.back_button).setOnClickListener(v -> onBackPressed()); // Go back to the previous activity
+
+        // Remove the action bar (top navigation bar)
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide(); // Hide the action bar
+        }
+
         // Initialize views
         btnCreate = findViewById(R.id.btnCreate);
         recyclerView = findViewById(R.id.recyclerView);

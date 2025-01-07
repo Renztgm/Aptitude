@@ -14,7 +14,7 @@ android {
         minSdk = 33
         targetSdk = 33
         versionCode = 1
-        versionName = "5.0beta"
+        versionName = "v6.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -44,6 +44,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    //-----------------Get this code -----------------//
+    buildFeatures {
+        buildConfig = true // Enable BuildConfig feature
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "GEMINI_API_KEY", "\"AIzaSyBKeAjfKK6mSpBwtxQGUXuxVS8s77OHybs\"")
+        }
+        release {
+            buildConfigField("String", "GEMINI_API_KEY", "\"AIzaSyBKeAjfKK6mSpBwtxQGUXuxVS8s77OHybs\"")
+        }
+    }
+    //-----------------Get this code -----------------//
 }
 
 dependencies {
@@ -73,6 +87,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation(libs.common)
     implementation(libs.core.ktx)
+    implementation(libs.language.id.common)
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
 
     // Volley (For network requests)
@@ -92,4 +107,10 @@ dependencies {
 
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     implementation("org.json:json:20231013")
+
+
+    implementation ("com.google.mlkit:common:16.0.0")
+    implementation ("com.itextpdf:itextpdf:5.5.13.1")
+
+
 }

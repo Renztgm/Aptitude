@@ -4,7 +4,7 @@
     <!-- Boxes -->
     <style name="NavigationBar" parent="Widget.MaterialComponents.Button">
         <!-- Background color -->
-        <item name="android:backgroundTint">@color/nav</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="strokeColor">@color/nav_buttons_stroke</item>
         <item name="strokeWidth">3dp</item>
     </style>
@@ -93,5 +93,6 @@
     <style name="listviewboxes" parent="Theme.MaterialComponents">
         <item name="strokeColor">@color/button_stroke</item>
         <item name="strokeWidth">2dp</item>
+        <item name="cornerRadius">12dp</item>
     </style>
 </resources>

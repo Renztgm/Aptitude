@@ -19,6 +19,7 @@ googleFirebaseCrashlytics = "3.0.2"
 common = "18.11.0"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
+languageIdCommon = "16.1.0"
 
 [libraries]
 espresso-core-v351 = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
@@ -38,6 +39,7 @@ firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
 common = { group = "com.google.mlkit", name = "common", version.ref = "common" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+language-id-common = { group = "com.google.mlkit", name = "language-id-common", version.ref = "languageIdCommon" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

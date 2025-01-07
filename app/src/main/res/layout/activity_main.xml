@@ -14,11 +14,11 @@
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_height="56dp"
         android:backgroundTint="@color/nav"
 
-        >
+        app:fabAlignmentMode="center"
+        android:layout_gravity="bottom">
         
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -29,7 +29,8 @@
             android:background="@android:color/transparent"
             android:layout_marginEnd="16dp"
             app:itemIconTint="@drawable/nav_item_icon_tint"
-            app:menu="@menu/bottom_nav_menu"/>
+            app:menu="@menu/bottom_nav_menu"
+            />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -37,11 +38,9 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/fab"
         android:src="@drawable/gemini"
-        app:layout_anchor="@id/bottomAppBar"
-        android:backgroundTint="@color/nav"
-        app:backgroundTint="@color/nav"
-        app:strokeColor="@color/nav"
-        style="@style/NavigationBar"/>
+        app:backgroundTint="@color/fab_stroke"
+        app:layout_anchor="@id/bottomAppBar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -81,9 +81,18 @@ public class AccountActivity extends AppCompatActivity {
                                 }
 
                                 String profilePictureUrl = document.getString("profilePictureUrl");
-                                if (profilePictureUrl != null) {
-                                    Glide.with(this).load(profilePictureUrl).into(profileImageView);
+                                if (profilePictureUrl != null && !profilePictureUrl.isEmpty()) {
+                                    Glide.with(this)
+                                            .load(profilePictureUrl)
+                                            .placeholder(R.drawable.ic_profile_placeholder)  // Display while loading
+                                            .error(R.drawable.ic_profile_placeholder)        // If image fails to load
+                                            .fallback(R.drawable.ic_profile_placeholder)     // If URL is null
+                                            .into(profileImageView);
+
+                                } else {
+                                    profileImageView.setImageResource(R.drawable.circle_background);
                                 }
+
                             }
                         } else {
                             Toast.makeText(AccountActivity.this, "Error fetching user data", Toast.LENGTH_SHORT).show();

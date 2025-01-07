@@ -39,21 +39,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/userInfoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Info"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:paddingBottom="16dp"/>
+
 
         <TextView
             android:id="@+id/Result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Test Result"
+            android:background="@drawable/chatbox"
+            android:padding="@dimen/icon_size_std"
+            android:text="How can I Helo you for today?"
             android:layout_marginBottom="100dp"
             android:layout_marginTop="100dp"
             android:textSize="14dp"/>
 
     </LinearLayout>
 </ScrollView>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="50dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp">
@@ -61,8 +78,10 @@
             android:id="@+id/eTPrompt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Hi, How Can I help you!"
+            android:ems="1"
+            android:textColor="@color/text"
+            android:textColorHint="@color/hint"
+            android:hint="Chat Here!"
             android:inputType="text" />
         </LinearLayout>
     </ScrollView>
@@ -72,7 +91,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:layout_margin="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+
 
 
 </LinearLayout>

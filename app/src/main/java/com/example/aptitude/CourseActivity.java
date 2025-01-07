@@ -180,7 +180,7 @@ public class CourseActivity extends AppCompatActivity {
 
     private void openSummarize() {
         // Open the Summarization section (e.g., using an Intent to start a new Activity)
-        Intent intent = new Intent(this, SummarizeActivity.class);
+        Intent intent = new Intent(this, SummarizerAI.class);
         startActivity(intent);
     }
 }

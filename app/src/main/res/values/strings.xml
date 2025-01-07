@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Aptitude</string>
     <string name="api_key">AIzaSyA2gqI4dXDwEC68CQ-6fVTjRXFKfraTP6g</string>
+    <string name="dash">-- --</string>
+    <string name="birthdate">Birthdate: -- --</string>
+    <string name="log_out">Log Out</string>
+    <string name="prompt">" "</string>
+    <string name="this_is_summarized_text" />
+    <string name="aptitude_ai">Summarizer AI</string>
+    <string name="submit"><![CDATA[<]]></string>
 
 </resources>
