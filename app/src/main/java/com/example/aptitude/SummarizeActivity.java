@@ -22,6 +22,10 @@ public class SummarizeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summarize);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide(); // Hide the action bar
+        }
+
         inputText = findViewById(R.id.inputText);
         resultText = findViewById(R.id.resultText);
         summarizeButton = findViewById(R.id.summarizeButton);

@@ -6,12 +6,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    tools:context=".MainActivity">
+    android:background="@drawable/pink2"
+    tools:context=".MainActivity"
+    >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/pinknav"
+        android:layout_marginTop="25dp">
 
         <ImageButton
             android:id="@+id/back_button"
@@ -20,7 +24,8 @@
             android:background="@drawable/backbutton"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/AppName"
@@ -30,6 +35,7 @@
             android:textSize="25sp"
             android:gravity="center"
             android:textStyle="bold"
+
             android:layout_margin="15dp"
             />
     </LinearLayout>
@@ -37,11 +43,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="300dp"
+        >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/pink3"
+            android:layout_margin="10dp"
             android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/Result"
@@ -51,7 +62,8 @@
                 android:overScrollMode="always"
                 android:hint="@string/this_is_summarized_text"
                 android:layout_marginTop="200dp"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
@@ -67,7 +79,8 @@
                 android:text=""
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_gravity="end" />
+                android:layout_gravity="end"
+                android:backgroundTint="@color/Coursenavpink"/>
 
         </LinearLayout>
     </ScrollView>
@@ -86,21 +99,26 @@
             android:gravity="top|start"
             android:maxLines="5"
             android:inputType="textMultiLine" />
+
         <Button
             android:id="@+id/btnSub"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:text="@string/submit"
             android:layout_gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:text="@string/submit"
+            android:backgroundTint="@color/Coursenavpink"/>
     </LinearLayout>
+
     <Button
         android:id="@+id/btnSelectPdf"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
         android:text="Select PDF"
         android:layout_marginTop="16dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:backgroundTint="@color/Coursenavpink"
+        />
 
     <RadioGroup
         android:id="@+id/radioGroupSummary"
@@ -113,7 +131,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Short" />
+            android:text="Short"
+            android:background="@drawable/pinknav"
+            android:layout_marginHorizontal="5dp"/>
 
         <RadioButton
             android:id="@+id/radioMedium"
@@ -121,21 +141,27 @@
             android:layout_height="wrap_content"
             android:text="Medium"
             android:layout_weight="1"
-            android:checked="true"/>
+            android:checked="true"
+            android:background="@drawable/pinknav"
+            android:layout_marginHorizontal="5dp"/>
 
         <RadioButton
             android:id="@+id/radioLong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Long" />
+            android:text="Long"
+            android:background="@drawable/pinknav"
+            android:layout_marginHorizontal="5dp"/>
 
         <RadioButton
             android:id="@+id/radioKeyPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bullet"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/pinknav"
+            android:layout_marginHorizontal="5dp"/>
 
     </RadioGroup>
 </LinearLayout>

@@ -1,25 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="16dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:background="@color/buttons"
-    android:elevation="4dp"
-    android:layout_margin="8dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/rounded_card_background">
 
+    <!-- Delete Button positioned on the top-right -->
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="X"
+        android:backgroundTint="@color/red"
+        android:textColor="@android:color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true" />
+
+    <!-- Question TextView centered on the card -->
     <TextView
         android:id="@+id/tvQuestion"
-        android:text="Question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textColor="@android:color/white"
+        android:layout_centerInParent="true"
+        android:textAlignment="center" />
 
+    <!-- Answer TextView centered on the card -->
     <TextView
         android:id="@+id/tvAnswer"
-        android:text="Answer"
-        android:textSize="16sp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"/> <!-- Initially hidden for flip effect -->
-
-</LinearLayout>
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_centerInParent="true"
+        android:textAlignment="center" />
+</RelativeLayout>

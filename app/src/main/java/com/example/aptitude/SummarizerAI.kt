@@ -2,19 +2,22 @@ package com.example.aptitude
 
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.*
-import androidx.activity.result.contract.ActivityResultContracts
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.RadioGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.example.aptitude.BuildConfig
 import com.google.ai.client.generativeai.GenerativeModel
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import com.itextpdf.text.pdf.PdfReader
 import com.itextpdf.text.pdf.parser.PdfTextExtractor
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import java.io.File
 
 class SummarizerAI : AppCompatActivity() {
@@ -33,10 +36,16 @@ class SummarizerAI : AppCompatActivity() {
             }
         }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_summarazerai)
+
+        // Remove the action bar (top navigation bar)
+        if (supportActionBar != null) {
+            supportActionBar!!.hide() // Hide the action bar
+        }
 
         val apiKey = BuildConfig.GEMINI_API_KEY
         val eTPrompt = findViewById<EditText>(R.id.eTPrompt)

@@ -30,63 +30,56 @@ public class FlashcardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcards);
 
-        findViewById(R.id.back_button).setOnClickListener(v -> onBackPressed()); // Go back to the previous activity
+        findViewById(R.id.back_button).setOnClickListener(v -> onBackPressed());
 
-        // Remove the action bar (top navigation bar)
         if (getSupportActionBar() != null) {
-            getSupportActionBar().hide(); // Hide the action bar
+            getSupportActionBar().hide();
         }
 
-        // Initialize views
         btnCreate = findViewById(R.id.btnCreate);
         recyclerView = findViewById(R.id.recyclerView);
-        progressBar = findViewById(R.id.progressBar);  // Make sure this is in your XML layout
+        progressBar = findViewById(R.id.progressBar);
 
-        // Set up RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Initialize Firebase instances
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        // Check if the user is logged in
         if (auth.getCurrentUser() == null) {
-            // Redirect to login activity if not logged in
             startActivity(new Intent(FlashcardsActivity.this, LoginActivity.class));
             finish();
             return;
         }
 
-        // Initialize the flashcard list and adapter
         flashcardList = new ArrayList<>();
-        adapter = new FlashcardAdapter(flashcardList);
+        String userId = auth.getCurrentUser().getUid();
+        adapter = new FlashcardAdapter(flashcardList, userId);  // Pass user ID to adapter
         recyclerView.setAdapter(adapter);
 
-        // Load flashcards from Firestore
         loadFlashcards();
 
-        // Create button click listener to navigate to the CreateFlashcardActivity
         btnCreate.setOnClickListener(v -> {
             startActivity(new Intent(FlashcardsActivity.this, CreateFlashcardActivity.class));
         });
     }
 
     private void loadFlashcards() {
-        // Show the loading progress bar
         progressBar.setVisibility(View.VISIBLE);
 
         String userId = auth.getCurrentUser().getUid();
         db.collection("flashcards").document(userId).collection("userFlashcards")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    // Hide the progress bar once data is loaded
                     progressBar.setVisibility(View.GONE);
-
-                    // Clear the existing flashcards and add the new ones
                     flashcardList.clear();
                     if (!queryDocumentSnapshots.isEmpty()) {
                         for (DocumentSnapshot snapshot : queryDocumentSnapshots) {
-                            Flashcard flashcard = snapshot.toObject(Flashcard.class);
+                            String id = snapshot.getId();  // Get the Firestore document ID
+                            String question = snapshot.getString("question");
+                            String answer = snapshot.getString("answer");
+
+                            // Create Flashcard with ID
+                            Flashcard flashcard = new Flashcard(id, question, answer);
                             flashcardList.add(flashcard);
                         }
                         adapter.notifyDataSetChanged();
@@ -95,7 +88,6 @@ public class FlashcardsActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    // Hide the progress bar and show error message
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(FlashcardsActivity.this, "Error loading flashcards", Toast.LENGTH_SHORT).show();
                 });

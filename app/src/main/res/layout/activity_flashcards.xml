@@ -2,15 +2,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/pink2">
 
+    <!-- Back Button -->
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_width="@dimen/icon_size_std"
-        android:layout_height="@dimen/icon_size_std"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@drawable/backbutton"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp" />
 
     <!-- ProgressBar for loading -->
     <ProgressBar
@@ -18,19 +20,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
-    <!-- RecyclerView to display the flashcards -->
+    <!-- RecyclerView to display flashcards -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 
-    <!-- Button to create new flashcard -->
+    <!-- Button to create a new flashcard -->
     <Button
         android:id="@+id/btnCreate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create New Flashcard"/>
+        android:text="Create New Flashcard"
+        android:backgroundTint="@color/Coursenavpink" />
 </LinearLayout>

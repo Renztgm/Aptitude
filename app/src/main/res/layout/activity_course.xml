@@ -1,64 +1,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/CourseBg"
-    android:padding="16dp">
+    android:background="@color/nav"
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="@dimen/icon_size_std"
-            android:layout_height="@dimen/icon_size_std"
-            android:background="@drawable/backbutton"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+        android:layout_height="80dp"
+        android:background="@drawable/pinknav">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/course_name"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="@dimen/icon_size_std"
+                android:layout_height="@dimen/icon_size_std"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/backbutton" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course Title"
-                android:textSize="22sp" />
-            <TextView
-                android:id="@+id/courseId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/nav"
-                android:textSize="8sp"
-                android:text="Course ID"
-                android:layout_marginBottom="0dp"/>
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/course_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Course Title"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/courseId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Course ID"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="@dimen/icon_size_std"
+                android:layout_height="@dimen/icon_size_std"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/delete" />
+
+            <ImageButton
+                android:id="@+id/edit"
+                android:layout_width="@dimen/icon_size_std"
+                android:layout_height="@dimen/icon_size_std"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/edit" />
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/delete"
-            android:layout_width="@dimen/icon_size_std"
-            android:layout_height="@dimen/icon_size_std"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/delete"/>
-
-        <ImageButton
-            android:id="@+id/edit"
-            android:layout_width="@dimen/icon_size_std"
-            android:layout_height="@dimen/icon_size_std"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/edit"/>
-
     </LinearLayout>
 
     <TextView
@@ -66,10 +76,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="10sp"
+        android:layout_marginBottom="0dp"
         android:text="Course Description"
-        android:layout_marginBottom="0dp"/>
+        android:textColor="@color/nav_buttons_stroke"
+        android:textSize="10sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,35 +89,33 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_1"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_marginBottom="8dp"
+            style="@style/CoursesInButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:text="Notes"
-            style="@style/CoursesInButton"
-            />
+            android:textSize="20sp" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_2"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_marginBottom="8dp"
+            style="@style/CoursesInButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:text="Flash Card"
-            style="@style/CoursesInButton"
-            />
+            android:textSize="20sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_3"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_marginBottom="8dp"
+            style="@style/CoursesInButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:text="Summarize"
-            style="@style/CoursesInButton"
-            />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
